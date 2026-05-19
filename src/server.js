@@ -31,7 +31,8 @@ app.get('/notes/:noteId', (req, res) => {
   });
 });
 
-app.get('/test-error', () => {
+// eslint-disable-next-line no-unused-vars
+app.get('/test-error', (req, res) => {
   throw new Error('Simulated server error');
 });
 
@@ -41,9 +42,8 @@ app.use((req, res) => {
   });
 });
 
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-  next;
-
   res.status(500).json({
     message: err.message,
   });
