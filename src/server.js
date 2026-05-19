@@ -1,7 +1,7 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const cors = require('cors');
-const pino = require('pino-http');
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import pino from 'pino-http';
 
 dotenv.config();
 
