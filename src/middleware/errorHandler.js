@@ -1,8 +1,15 @@
+import { isHttpError } from 'http-errors';
+
 // eslint-disable-next-line no-unused-vars
 export const errorHandler = (err, req, res, next) => {
-  const status = err.status || err.statusCode || 500;
+  if (isHttpError(err)) {
+    res.status(err.status).json({
+      message: err.message,
+    });
+    return;
+  }
 
-  res.status(status).json({
-    message: err.message,
+  res.status(500).json({
+    message: 'Internal server error',
   });
 };
