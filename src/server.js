@@ -1,6 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import authRouter from './routes/authRoutes.js';
 import { connectMongoDB } from './db/connectMongoDB.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
@@ -14,8 +16,10 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 app.use(logger);
 app.use(notesRouter);
+app.use(authRouter);
 
 // eslint-disable-next-line no-unused-vars
 app.get('/test-error', (req, res) => {
