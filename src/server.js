@@ -9,6 +9,7 @@ import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { logger } from './middleware/logger.js';
 import { errors } from 'celebrate';
 import notesRouter from './routes/notesRoutes.js';
+import userRouter from './routes/userRoutes.js';
 
 dotenv.config();
 
@@ -18,8 +19,9 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use(logger);
-app.use(notesRouter);
 app.use(authRouter);
+app.use(userRouter);
+app.use(notesRouter);
 
 // eslint-disable-next-line no-unused-vars
 app.get('/test-error', (req, res) => {
